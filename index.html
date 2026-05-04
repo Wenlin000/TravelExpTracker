@@ -5,25 +5,40 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
-    <!-- PWA 核心設定 -->
+    <!-- 確保樣式載入：使用 Tailwind CSS CDN 作為雙重保障 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- PWA 與手機最佳化 -->
     <link rel="manifest" href="/manifest.json" />
-    
-    <!-- 設定手機頂部狀態欄顏色 (配合你的深藍紫色) -->
     <meta name="theme-color" content="#1e1b4b" />
-    
-    <!-- iOS 專用的 App 圖示設定 (建議在 public 放一張 apple-touch-icon.png) -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!-- Android 桌面圖示 -->
-  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
-
     <title>旅遊記帳翻譯助手</title>
+    
+    <style>
+      /* 防止畫面過度拉伸與閃爍 */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f8fafc;
+      }
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      /* 修正 iOS 底部安全區域問題 */
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    </style>
   </head>
   <body>
+    <!-- React 會掛載到這裡 -->
     <div id="root"></div>
+    
+    <!-- 指向您的主程式碼入口 -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
