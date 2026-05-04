@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     
-    <!-- 確保樣式載入：使用 Tailwind CSS CDN 作為雙重保障 -->
+    <!-- 核心樣式：Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- PWA 與手機最佳化 -->
@@ -14,31 +14,35 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <title>旅遊記帳翻譯助手</title>
+    <title>旅遊記帳助手</title>
     
     <style>
-      /* 防止畫面過度拉伸與閃爍 */
-      body {
-        margin: 0;
-        padding: 0;
+      /* 徹底根除 Vite 預設樣式干擾 */
+      :root, body, #root {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100vh !important;
+        text-align: left !important;
+        display: block !important;
         background-color: #f8fafc;
+        overflow-x: hidden;
       }
-      #root {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
+
+      /* 點擊回饋優化 */
+      button:active {
+        transform: scale(0.95);
       }
-      /* 修正 iOS 底部安全區域問題 */
-      .pb-safe {
-        padding-bottom: env(safe-area-inset-bottom);
+
+      /* 隱藏原生檔案上傳按鈕，讓介面乾淨 */
+      input[type="file"] {
+        display: none !important;
       }
     </style>
   </head>
   <body>
-    <!-- React 會掛載到這裡 -->
     <div id="root"></div>
-    
-    <!-- 指向您的主程式碼入口 -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
