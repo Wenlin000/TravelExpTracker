@@ -13,7 +13,7 @@ const firebaseConfig = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG);
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const appId = typeof __app_id !== 'undefined' ? __app_id : 'travel-expense-tracker';
+const appId = import.meta.env.VITE_APP_ID || 'ravel-expense-tracker';
 
 const App = () => {
   const [user, setUser] = useState(null);
